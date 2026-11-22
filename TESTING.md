@@ -30,10 +30,44 @@ transaction that is rolled back, so the test database stays clean.
 | `tests/StaffTest.php` | DB | NIF check digit; duplicate NIF; only admins grant admin; cannot deactivate yourself; create beach + add lockers; rented locker cannot be deleted (US6) |
 
 ### Latest run
-> Paste the output of `composer test` here (or a screenshot in the submission PDF), with the date.
+2026-11-22 · macOS · PHP 8.6.0 · PostgreSQL 16 · PHPUnit 9.6.39 · local `wavespace_test` seeded from `schema.sql`
 
 ```
-(not run yet)
+Pricing
+ ✔ Monthly term has no discount
+ ✔ Three month term is ten percent off
+ ✔ Yearly term is twenty five percent off
+ ✔ Valid card with spaces is accepted
+ ✔ Card failing luhn check is rejected
+ ✔ Expired card is rejected
+ ✔ Bad cvc is rejected
+ ✔ Simulated decline card
+
+Locker
+ ✔ Booking occupies locker and issues four digit pin
+ ✔ Fully booked throws
+ ✔ Revoke disables pin and frees locker
+ ✔ Cancel renewal keeps access active
+ ✔ Expired cancelled subscription frees locker
+ ✔ Other user cannot revoke
+ ✔ Card validation
+
+Booking Flow
+ ✔ Browse book and receive pin
+ ✔ Cancel renewal then period ends
+ ✔ Auto renew charges and extends
+ ✔ Database rejects second active subscription on same locker
+
+Staff
+ ✔ Nif validation
+ ✔ Create staff and reject duplicate nif
+ ✔ Only admin can grant admin
+ ✔ Cannot deactivate yourself
+ ✔ Create beach with lockers and add more
+ ✔ Rented locker cannot be deleted
+
+Time: 00:01.651, Memory: 6.00 MB
+OK (25 tests, 54 assertions)
 ```
 
 ## 2. Manual test checklist
