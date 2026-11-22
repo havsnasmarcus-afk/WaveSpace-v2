@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23065E7F%27/%3E%3Cpath d=%27M4 19c3-5 5-5 8 0s5 5 8 0 5-5 8 0%27 fill=%27none%27 stroke=%27%23FEFCF5%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <title>Staff · WaveSpace</title>
+</head>
+<body>
+  <header id="nav"></header>
+  <main class="mx-auto max-w-[1240px] px-6 pb-20 pt-10">
+    <div id="gate"><div class="skeleton h-40"></div></div>
+
+    <div id="staff-app" hidden>
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="text-[0.95rem] font-semibold uppercase tracking-wide" style="color:var(--ocean)">Staff area</p>
+          <h1 class="display mt-1 text-[2.2rem] leading-tight sm:text-5xl">Operations</h1>
+        </div>
+        <div class="flex flex-wrap gap-1 rounded-2xl p-1" style="background:var(--paper);border:1px solid var(--line)" role="tablist" aria-label="Staff sections">
+          <button type="button" class="tab" role="tab" data-view="kpis">Overview</button>
+          <button type="button" class="tab" role="tab" data-view="map">Lockers map</button>
+          <button type="button" class="tab" role="tab" data-view="team">Team</button>
+        </div>
+      </div>
+
+      <!-- Overview / KPIs -->
+      <section id="view-kpis" class="mt-8" hidden aria-label="Operational KPIs"></section>
+
+      <!-- Interactive map + inventory -->
+      <section id="view-map" class="mt-8" hidden aria-label="Lockers map">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
+          <div>
+            <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+              <p class="text-sm text-muted" id="map-hint">Click a pin to manage that beach's lockers.</p>
+              <button id="add-beach" type="button" class="btn btn-ocean">+ New beach</button>
+            </div>
+            <div id="staff-map" class="beach-map" role="application" aria-label="Interactive map of beaches with lockers"></div>
+            <div class="mt-3 flex flex-wrap gap-4 text-xs text-muted">
+              <span class="flex items-center gap-1.5"><span class="lk-key" data-s="available"></span>Free</span>
+              <span class="flex items-center gap-1.5"><span class="lk-key" data-s="occupied"></span>Rented</span>
+              <span class="flex items-center gap-1.5"><span class="smap-pin smap-pin-key" data-level="full">0</span>Pin = free lockers · fully booked</span>
+            </div>
+          </div>
+          <aside id="map-side" class="space-y-4" aria-live="polite"></aside>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section id="view-team" class="mt-8" hidden aria-label="Staff members"></section>
+    </div>
+  </main>
+
+  <dialog id="staff-dialog" aria-labelledby="sd-title">
+    <form id="staff-form" class="space-y-3 p-7" novalidate>
+      <div class="flex items-start justify-between gap-4">
+        <h2 id="sd-title" class="display text-xl">Add staff member</h2>
+        <button type="button" data-close class="text-2xl leading-none text-muted hover:text-ink" aria-label="Close">×</button>
+      </div>
+      <div id="staff-errors"></div>
+      <label class="field"><span>Full name</span><input class="input" name="full_name" autocomplete="off" maxlength="120" required></label>
+      <label class="field"><span>Email</span><input class="input" type="email" name="email" autocomplete="off" required></label>
+      <div class="grid grid-cols-2 gap-3">
+        <label class="field"><span>NIF</span><input class="input" name="nif" inputmode="numeric" maxlength="9" placeholder="9 digits" required></label>
+        <label class="field"><span>Phone <em>(optional)</em></span><input class="input" name="phone" inputmode="tel" maxlength="20"></label>
+      </div>
+      <label class="field"><span>Role</span>
+        <select class="input" name="role"><option value="staff">Staff</option><option value="admin">Admin</option></select></label>
+      <label class="field"><span id="pw-label">Temporary password</span>
+        <input class="input" type="password" name="password" autocomplete="new-password" placeholder="Min. 8 characters"></label>
+      <label id="active-wrap" class="flex items-center gap-2.5 py-1"><input type="checkbox" name="active" class="h-4 w-4"> <span>Active (can log in)</span></label>
+      <button id="staff-save" class="btn btn-coral w-full">Save</button>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/staff.js"></script>
+</body>
+</html>

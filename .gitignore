@@ -1,0 +1,13 @@
+# Secrets - real database credentials
+config/db.local.php
+
+# Dependencies / tooling
+/vendor/
+composer.lock
+.phpunit.result.cache
+.phpunit.cache/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

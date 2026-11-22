@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Run:  composer install && composer test
+  The database tests need a LOCAL scratch database that has schema.sql loaded:
+      createdb wavespace_test && psql -d wavespace_test -f schema.sql
+  WS_DB_DSN below makes config/db.php ignore config/db.local.php, so tests never touch the real FEUP database.
+  Override with env vars if your local user/password differ:  WS_DB_USER=postgres WS_DB_PASS=secret composer test
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         testdox="true">
+    <testsuites>
+        <testsuite name="unit">
+            <file>tests/PricingTest.php</file>
+        </testsuite>
+        <testsuite name="database">
+            <file>tests/LockerTest.php</file>
+            <file>tests/BookingFlowTest.php</file>
+            <file>tests/StaffTest.php</file>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="WS_DB_DSN" value="pgsql:host=localhost;port=5432;dbname=wavespace_test" force="false"/>
+    </php>
+</phpunit>
