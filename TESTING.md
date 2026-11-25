@@ -77,32 +77,31 @@ Mark ✅ / ❌ and note the bug if it fails.
 
 | # | Screen | Steps | Expected | Desktop | Phone |
 |---|---|---|---|---|---|
-| 1 | Map | Open home page | Pins on all 6 beaches with free counts; side list loads (skeleton while loading) | | |
-| 2 | Map | Click Supertubos | Shows "Fully booked", no Book button | | |
-| 3 | Map | Click Carcavelos | Capacity, free per size, prices; Book button | | |
-| 4 | Auth | Book while logged out | Asked to log in / register first | | |
-| 5 | Auth | Register with bad e-mail / 5-char password | Clear field errors, nothing saved | | |
-| 6 | Auth | Register valid account | Logged in, header shows name | | |
-| 7 | Auth | Log out, log in with wrong password | Error message, not logged in | | |
-| 8 | Book | Choose longboard, 3 months | Price shows −10 % | | |
-| 9 | Book | Pay with `4000 0000 0000 0002` | "Payment declined", no locker taken | | |
-| 10 | Book | Pay with expired date / short CVC | Field errors | | |
-| 11 | Book | Pay with `4242 4242 4242 4242` | Redirect to My locker, PIN visible; map free count dropped by 1 | | |
-| 12 | My locker | New code | Different 4-digit code shown | | |
-| 13 | My locker | Cancel auto-renewal | Status says access until renewal date; PIN still visible | | |
-| 14 | My locker | Renew now | New payment in history, renewal date +1 term | | |
-| 15 | My locker | Update billing with invalid / valid card | Error / new last-4 shown | | |
-| 16 | My locker | Send support request (empty, then filled) | Error / confirmation | | |
-| 17 | My locker | Simulate failed payment → confirm | PIN gone, status revoked; locker free again on map | | |
-| 18 | Staff | Log in as customer, open `staff.html` | No Staff tab; page shows "staff only" | | |
-| 19 | Staff | Log in as admin → Overview | KPIs and charts show; numbers reflect the booking above | | |
-| 20 | Staff | Lockers map → add 2 lockers to a beach | Counts update on map and on customer map | | |
-| 21 | Staff | New beach → click map, fill form | New pin appears for customers | | |
-| 22 | Staff | Team → add staff with invalid NIF | Error; valid NIF saves | | |
-| 23 | All | Keyboard only (Tab / Enter / Esc) | Every action reachable, focus visible | | |
-| 24 | All | Stop DB / wrong password in config (local only) | Friendly error, no PHP error page | | |
+| 1 | Map | Open home page | Pins on all 6 beaches with free counts; side list loads (skeleton while loading) | | |✅
+| 2 | Map | Click Supertubos | Shows "Fully booked", no Book button | | |✅
+| 3 | Map | Click Carcavelos | Capacity, free per size, prices; Book button | | |✅
+| 4 | Auth | Book while logged out | Asked to log in / register first | | |✅
+| 5 | Auth | Register with bad e-mail / 5-char password | Clear field errors, nothing saved | | |❌ 
+| 6 | Auth | Register valid account | Logged in, header shows name | | |✅
+| 7 | Auth | Log out, log in with wrong password | Error message, not logged in | | |✅ 
+| 8 | Book | Choose longboard, 3 months | Price shows −10 % | | |✅ 
+| 9 | Book | Pay with `4000 0000 0000 0002` | "Payment declined", no locker taken | | |✅ 
+| 10 | Book | Pay with expired date / short CVC | Field errors | | |✅ 
+| 11 | Book | Pay with `4242 4242 4242 4242` | Redirect to My locker, PIN visible; map free count dropped by 1 | | |✅
+| 12 | My locker | New code | Different 4-digit code shown | | |✅
+| 13 | My locker | Cancel auto-renewal | Status says access until renewal date; PIN still visible | | ✅|
+| 14 | My locker | Renew now | New payment in history, renewal date +1 term | | |✅ 
+| 15 | My locker | Update billing with invalid / valid card | Error / new last-4 shown | | |✅ 
+| 16 | My locker | Send support request (empty, then filled) | Error / confirmation | | |✅ 
+| 17 | My locker | Simulate failed payment → confirm | PIN gone, status revoked; locker free again on map | | |✅ 
+| 18 | Staff | Log in as customer, open `staff.html` | No Staff tab; page shows "staff only" | | |✅ 
+| 19 | Staff | Log in as admin → Overview | KPIs and charts show; numbers reflect the booking above | | |✅ 
+| 20 | Staff | Lockers map → add 2 lockers to a beach | Counts update on map and on customer map | | |✅ 
+| 21 | Staff | New beach → click map, fill form | New pin appears for customers | | |✅ 
+| 22 | Staff | Team → add staff with invalid NIF | Error; valid NIF saves | | |✅ 
+| 23 | All | Stop DB / wrong password in config (local only) | Friendly error, no PHP error page | | |✅ 
 
-Tested by: __________  Date: __________  URL: __________
+Tested by: Marcus Walter Date:22/11-26 URL: https://gnomo.fe.up.pt/~up202608623/
 
 ## 3. UX/UI review with the LLM
 
